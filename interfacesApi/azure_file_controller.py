@@ -32,7 +32,8 @@ def check_file_ext(path):
 
 
 def delete_file_blob(file_name):
-    blob_client = BlobServiceClient.get_blob_client(container=container_name, blob=file_name)
+    blob_service_client = BlobServiceClient.from_connection_string(connection_string)
+    blob_client = blob_service_client.get_blob_client(container=container_name, blob=file_name)
     try:
         blob_client.delete_blob()
         return True
